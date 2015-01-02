@@ -65,3 +65,29 @@ end
 
 
 ## Headless
+
+
+Run headless with Xvfb service with autoclose.
+
+in test file:
+
+```ruby
+RSpec.describe "My test", :type => :request do
+
+  describe "my tests" do
+  
+    # for Linux env
+    unless Gem.win_platform?
+      headless = Headless.new(display: 99, autopick: true, reuse: false, destroy_at_exit: true).start
+    end
+    
+    it "my test1" do
+      ...
+    end
+      
+    # more tests
+  end
+  
+end
+  
+```ruby
